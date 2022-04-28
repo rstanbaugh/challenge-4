@@ -1,8 +1,9 @@
 * {
   margin: 5px 10px;
 }
+/* css variables */
 :root {
-  --bg-color: #524578;
+  --background-color: #524578;
   --click-color:#484578;
   --font-colot: #ffffff;
 }
@@ -12,18 +13,12 @@ body {
   flex-direction: column;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  color: var(--main-bg-color);
-  height: 100px;
-}
-
-
+/* main container stuff */
 .main {
   direction: flex;
   flex-direction: column;
   margin: 5px 25%;
+  border: solid red;
 }
 
 .main div {
@@ -33,35 +28,53 @@ body {
   align-items: center;
 
 }
-.intro {
-  visibility: hidden;
+/* end main */
+
+/* header * navigation stuff */
+.header {
+  display: flex;
+  justify-content: space-between;
+  color: var(--main-bg-color);
+  height: 100px;
+  position: sticky; 
 }
 
-#start-quiz {
+
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  /* visibility: ; */
+}
+
+.btn {
   border: none;
-  background-color: var(--main-bg-color);
+  background-color: var(--background-color);
   border-radius: 10px;
   box-shadow: 0 9px #fff ;
-    /* 0px; */
   color: var(--font-colot);
-  /* display: inline-block; */
   font-size: 16px;
   line-height: 12px;
   width:fit-content;
-  /* margin: 16px 16px 16px 20px; */
   padding: 10px 20px;
   cursor: pointer;
+  /* margin: 16px 16px 16px 20px; */
+  /* display: inline-block; */
+  /* 0px; */
+
 }
 
-#quiz {
+/* above here is good */
+/* ################## */
+
+.quiz {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  border: solid red;
 }
 
-#quiz h4 {
+.quiz h4 {
   width: fit-content;
   padding: 3px 7px;
   background-color: var(--bg-color);
@@ -88,6 +101,9 @@ body {
 #quiz h4:active {
   box-shadow: 0 5px #666;
   transform: translateY(4px);}
+
+
+
 
 /* ####### Begin media queries########### */
 /* 900px  section */

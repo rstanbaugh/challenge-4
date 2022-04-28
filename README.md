@@ -9,7 +9,7 @@ https://rstanbaugh.github.io/challenge-4/
 <br />
 
 ## Description
-This page generates random passowrds:
+This page generates a JavsScript quiz:
 - User selects length between 8 and 128 characters
 - Password can consist of at last one of the following character types:
   - Lower case letters,
