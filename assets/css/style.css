@@ -6,7 +6,7 @@
 :root {
   --background-color: #524578;
   --click-color:#484578;
-  --font-colot: #ffffff;
+  --font-color: #ffffff;
 }
 
 body {
@@ -14,7 +14,6 @@ body {
   flex-direction: column;
 }
 
-/* main container stuff */
 .main {
   direction: flex;
   flex-direction: column;
@@ -24,11 +23,8 @@ body {
 .main div {
   display: flex;
   flex-direction: column;
-  /* text-align: center; */
 }
-/* end main */
 
-/* header * navigation stuff */
 .header {
   display: flex;
   justify-content: space-between;
@@ -41,7 +37,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* visibility: ; */
 }
 
 .intro p {
@@ -53,36 +48,20 @@ body {
   background-color: var(--background-color);
   border-radius: 10px;
   box-shadow: 4px 4px #fff ;
-  color: var(--font-colot);
+  color: var(--font-color);
   font-size: 16px;
   line-height: 12px;
   width:fit-content;
   padding: 10px 20px;
   cursor: pointer;
-  /* margin: 16px 16px 16px 20px; */
-  /* display: inline-block; */
-  /* 0px; */
-
 }
 
-/* above here is good */
-/* ################## */
 
 .quiz {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-}
-
-.quiz h4 {
-  width: fit-content;
-  padding: 3px 7px;
-  background-color: var(--background-color);
-  color: #fff;
-  font-size: large;
-  border: solid var(--background-color);
-  border-radius: 8px;
 }
 
 #answers {
@@ -92,16 +71,22 @@ body {
 }
 
 #answers li {
-  border: none;
+  border: solid var(--background-color);
   background-color: var(--background-color);
-  border-radius: 5px;
+  border-radius: 8px;
   box-shadow: 4px 4px #fff ;
-  color: var(--font-colot);
+  color: var(--font-color);
   font-size: 16px;
   width:fit-content;
-  padding: 5px;
+  padding: 3px 7px;
 }
 
+.results {
+border-top: solid #666;
+color: #666;
+font-style: italic;
+width: 100%;
+}
 .btn:hover {
   filter: brightness(85%);
 }

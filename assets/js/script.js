@@ -1,8 +1,6 @@
 // variables
 var currentQuestion = 0;
 var bodyEl = document.querySelector("#page"); 
-
-
 var startBtn = document.querySelector("#start-quiz");
 
 // create main container
@@ -32,15 +30,21 @@ var startBtnEl = document.createElement("button");
 
 // create quiz element
 var quizEl = document.createElement("div");
-quizEl.className = "quiz";
+  quizEl.className = "quiz";
 
-  // 
-  // 
+// create correct answer element
+var correctAnswerEl = document.createElement("h2")
+  correctAnswerEl.className = "results";
+  correctAnswerEl.innerHTML = "<h2>Correct!!</h2>";
 
+// create wrong answer element
+var wrongAnswerEl = document.createElement("h2")
+  wrongAnswerEl.className = "results";
+  wrongAnswerEl.innerHTML = "<h2>Wrong Answer!!</h2>";
 
 
 // load quiz questions
-var LoadQuiz = function(){
+var fetchQuizData = function(){
   var myQuiz = [
   {
     question: "Commonly used data types DO NOT include:",
@@ -71,45 +75,54 @@ var LoadQuiz = function(){
   return myQuiz;
 }
 
-
-var startQuiz = function() {
-  // window.alert("quiz started");
+// function to build html for current question
+var getQuestion = function(currentQuestion){
   var answerString="";
   while (currentQuestion < 1){
+    quizEl.innerHTML = "<h1>" + myQuiz[currentQuestion].question + "</h1>" + answerString;
 
-
-  quizEl.innerHTML = "<h1>" + myQuiz[currentQuestion].question + "</h1>" + answerString;
-  // quizEl.appendChild("<h1>" + myQuiz[currentQuestion].question + "</h1>");
-
-  // create ul of answers
-  var answerListEl = document.createElement("ul");
-    answerListEl.id = "answers";
- 
-
-  // add the answers as li
-  for (var j=0; j <  myQuiz[currentQuestion].answers.length; j++) {
-    var answerEl = document.createElement("li");
-    answerEl.setAttribute("data-answer-num",j+1);
-    answerEl.textContent = (j+1)+". "+myQuiz[currentQuestion].answers[j];
-    answerListEl.appendChild(answerEl);
+    // create ul of answers
+    var answerListEl = document.createElement("ul");
+      answerListEl.id = "answers";
+  
+   // add the answers as li
+    for (var j=0; j <  myQuiz[currentQuestion].answers.length; j++) {
+      var answerEl = document.createElement("li");
+        answerEl.setAttribute("data-answer-num",j+1);
+        answerEl.textContent = (j+1)+". "+myQuiz[currentQuestion].answers[j];
+        answerListEl.appendChild(answerEl);
+    };
+    quizEl.appendChild(answerListEl);
+    currentQuestion++;
   };
-  quizEl.appendChild(answerListEl);
-  currentQuestion++;
-  };
+};
 
+var Quiz = function() {
+  // window.alert("quiz started");
+
+  // clear main element of the intro html
   mainEl.innerHTML ="";
+
+  // present the question
   mainEl.appendChild(quizEl);
 }
 
 var handleAnswer = function(event){
-  // var target = event.target;
   answerSelected = event.target.getAttribute("data-answer-num");
-alert(answerSelected)
+  if (answerSelected === myQuiz[currentQuestion].correctAnswer){
+    quizEl.appendChild(correctAnswerEl);
+    alert("CORRECT");
+  } else {
+    quizEl.appendChild(wrongAnswerEl);
+    alert (answerSelected+"<>"+myQuiz[currentQuestion].correctAnswer);
+  }
 }
 
 
 // code executing here
-var myQuiz = LoadQuiz();
+var myQuiz = fetchQuizData();
+// preload the first question
+getQuestion(currentQuestion);
 bodyEl.appendChild(headerEl);
 bodyEl.appendChild(mainEl)
 mainEl.appendChild(introEl);
@@ -119,5 +132,5 @@ mainEl.appendChild(introEl);
 
 
 // Add event listener to generate button
-startBtnEl.addEventListener("click", startQuiz);
-quizEl.querySelector("h4").addEventListener("click", handleAnswer);
+startBtnEl.addEventListener("click", Quiz);
+quizEl.querySelector("#answers").addEventListener("click", handleAnswer)
