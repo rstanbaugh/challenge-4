@@ -18,7 +18,7 @@ var mainEl = document.createElement("div");
 // load main
 bodyEl.appendChild(mainEl)
 
-// Main container has been construced
+// Main container has been constructed
 //  Body
 //    -> header   
 //    -> main
@@ -150,14 +150,13 @@ var handleAnswer = function(event){
 
 }
 
+// to be develeped later - game timer
 var timeLeft = function(){
   return true;
 }
 
-// code executing here
-// -------------------
 
-
+// quiz execution begins here
 var myQuiz = fetchQuizData();   // fetch the data for quiz questions and answers
 nextQuestion(currentQuestion);  // preload the first question
 loadIntro();                    // load the intro page
