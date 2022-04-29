@@ -76,7 +76,7 @@ var LoadQuiz = function(){
 var startQuiz = function() {
   // window.alert("quiz started");
   var answerString="";
-  for (var i = 0; i< 1; i++){
+  for (var i = 0; i < 1; i++){
     for (var j=0; j <  myQuiz[i].answers.length; j++) {
       answerString = answerString.concat("<h4 data-answer-num = ",j+1,">", j+1, ". ",myQuiz[i].answers[j],"</h4>");
     };
@@ -88,9 +88,9 @@ var startQuiz = function() {
 }
 
 var handleAnswer = function(event){
-  var target = event.target;
-  alert(target.getAttribute("data-answre-num"));
-
+  // var target = event.target;
+  answerSelected = event.target.getAttribute("data-answer-num");
+alert(answerSelected)
 }
 
 
