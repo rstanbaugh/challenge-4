@@ -67,6 +67,8 @@ var gameTimer = function(){
 // load intro page
 var loadIntro = function(){
 introEl.style.display = "";
+quizEl.style.display = "none";
+finalScoreEl.style.display = "none";
 };
 
 
@@ -101,12 +103,17 @@ var startQuiz = function() {
 var endGame = function(score){
   timeLeft="done";
   quizEl.style.display = "none";
+  finalScoreEl.style.display = "flex"
+
 
   var pageContent = document.createElement("div");
   pageContent.innerHTML ="<h1>All Done!</h1><br>"+
-    "Your final score is:".concat(score);
+    "<h3>Your final score is: ".concat(score,"</h3>");
   
   finalScoreEl.appendChild(pageContent);
+
+  initialsEl = document.createElement("form");
+    initialsEl.
   
   finalScoreEl.style.display = ""
 };
