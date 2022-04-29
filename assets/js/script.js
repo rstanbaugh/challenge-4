@@ -1,4 +1,5 @@
 // variables
+var currentQuestion = 0;
 var bodyEl = document.querySelector("#page"); 
 
 
@@ -35,8 +36,6 @@ quizEl.className = "quiz";
 
   // 
   // 
-
- 
 
 
 
@@ -76,11 +75,26 @@ var LoadQuiz = function(){
 var startQuiz = function() {
   // window.alert("quiz started");
   var answerString="";
-  for (var i = 0; i < 1; i++){
-    for (var j=0; j <  myQuiz[i].answers.length; j++) {
-      answerString = answerString.concat("<h4 data-answer-num = ",j+1,">", j+1, ". ",myQuiz[i].answers[j],"</h4>");
-    };
-  quizEl.innerHTML = "<h1>" + myQuiz[i].question + "</h1>" + answerString;
+  while (currentQuestion < 1){
+
+
+  quizEl.innerHTML = "<h1>" + myQuiz[currentQuestion].question + "</h1>" + answerString;
+  // quizEl.appendChild("<h1>" + myQuiz[currentQuestion].question + "</h1>");
+
+  // create ul of answers
+  var answerListEl = document.createElement("ul");
+    answerListEl.id = "answers";
+ 
+
+  // add the answers as li
+  for (var j=0; j <  myQuiz[currentQuestion].answers.length; j++) {
+    var answerEl = document.createElement("li");
+    answerEl.setAttribute("data-answer-num",j+1);
+    answerEl.textContent = (j+1)+". "+myQuiz[currentQuestion].answers[j];
+    answerListEl.appendChild(answerEl);
+  };
+  quizEl.appendChild(answerListEl);
+  currentQuestion++;
   };
 
   mainEl.innerHTML ="";
@@ -106,4 +120,4 @@ mainEl.appendChild(introEl);
 
 // Add event listener to generate button
 startBtnEl.addEventListener("click", startQuiz);
-quizEl.addEventListener("click", handleAnswer);
+quizEl.querySelector("h4").addEventListener("click", handleAnswer);
