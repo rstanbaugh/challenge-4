@@ -101,32 +101,26 @@ var fetchQuizData = function(){
 
 // function to build html for next question
 var nextQuestion = function(currentQuestion){
-var answerString="";
+  var answerString="";
   quizEl.innerHTML = "<h1>" + myQuiz[currentQuestion].question + "</h1>" + answerString;
 
-// create ul of answers
-var answerListEl = document.createElement("ul");
-  answerListEl.id = "answers";
+  // create ul of answers
+  var answerListEl = document.createElement("ul");
+    answerListEl.id = "answers";
 
-// add the answers as li
-for (var j=0; j <  myQuiz[currentQuestion].answers.length; j++) {
-  var answerEl = document.createElement("li");
-    answerEl.setAttribute("data-answer-num",j+1);
-    answerEl.textContent = (j+1)+". "+myQuiz[currentQuestion].answers[j];
-    answerListEl.appendChild(answerEl);
-};
-quizEl.appendChild(answerListEl);
+  // add the answers as li
+  for (var j=0; j <  myQuiz[currentQuestion].answers.length; j++) {
+    var answerEl = document.createElement("li");
+      answerEl.setAttribute("data-answer-num",j+1);
+      answerEl.textContent = (j+1)+". "+myQuiz[currentQuestion].answers[j];
+      answerListEl.appendChild(answerEl);
+  };
+  quizEl.appendChild(answerListEl);
 };
 
-var quiz = function() {
+var startQuiz = function() {
   mainEl.innerHTML ="";         // clear main element of the intro html
   mainEl.appendChild(quizEl);   // push question to the DOM
-
-  while (currentQuestion < myQuiz.length && timeLeft()) {
-    // alert(currentQuestion);
-    nextQuestion(currentQuestion);  // load question
-    currentQuestion++;
-  }
 };
 
 // event handler for answer click
@@ -143,15 +137,23 @@ var handleAnswer = function(event){
   currentQuestion++;
   if (currentQuestion <= parseInt(myQuiz.length,10)){
     nextQuestion(currentQuestion);
-    quiz();
+    // startQuiz();
   } else {
     endgame();
   }
 
 }
 
+// called when game ends
+// - out of time
+// - out of questions
+var endGame = function(){
+  alert("end game!");
+};
+
+
 // to be develeped later - game timer
-var timeLeft = function(){
+var gameLeft = function(){
   return true;
 }
 
@@ -165,5 +167,6 @@ loadIntro();                    // load the intro page
 
 
 // Event listeners
-startBtnEl.addEventListener("click", quiz);   // start button on intro page
+startBtnEl.addEventListener("click", startQuiz);   // start button on intro page
+// gameTime.addEventListener()
 quizEl.querySelector("#answers").addEventListener("click", handleAnswer)  // quizEl has to be set before calling
