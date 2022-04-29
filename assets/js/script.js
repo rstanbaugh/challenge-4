@@ -18,36 +18,46 @@ var mainEl = document.createElement("div");
 // load main
 bodyEl.appendChild(mainEl)
 
+// Main container has been construced
+//  Body
+//    -> header   
+//    -> main
 
-// create intro element in a div
+
+// create intro element in a div 
+// to hold all html for main section of intro page)
 var introEl = document.createElement("div");
   introEl.className = "intro";
   introEl.innerHTML = " <h1>Coding Quiz Challenge</h1>" +
   "<p>Try to answer the following code-related questions within the time limit. " +
   "Keep in mind that incorrect answers will penaliez your score/time by ten seconds.</p>";
 
-// create start button element
+// create start button element and append to introEl
 var startBtnEl = document.createElement("button");
   startBtnEl.className = "btn";
   startBtnEl.id = "start-quiz";
   startBtnEl.textContent = "Start Quiz";
   introEl.appendChild(startBtnEl);
+//  end intro
 
-// create quiz element
+
+// create quiz element to hold all html for main section of quiz page
 var quizEl = document.createElement("div");
   quizEl.className = "quiz";
 
-// create correct answer element
+// create correct answer element - shown when question answered correctly
 var correctAnswerEl = document.createElement("h2")
   correctAnswerEl.className = "results";
   correctAnswerEl.innerHTML = "<h2>Correct!!</h2>";
 
-// create wrong answer element
+// create wrong answer element - shown when question answered incorrectly
 var wrongAnswerEl = document.createElement("h2")
   wrongAnswerEl.className = "results";
   wrongAnswerEl.innerHTML = "<h2>Wrong Answer!!</h2>";
+//  end initial quiz element section
 
-// present intro page
+
+// load intro page
 var loadIntro = function(){
     // clear main element of the intro html
     mainEl.innerHTML ="";
@@ -89,8 +99,8 @@ var fetchQuizData = function(){
   return myQuiz;
 };
 
-// function to build html for current question
-var getQuestion = function(currentQuestion){
+// function to build html for next question
+var nextQuestion = function(currentQuestion){
 var answerString="";
   quizEl.innerHTML = "<h1>" + myQuiz[currentQuestion].question + "</h1>" + answerString;
 
@@ -106,18 +116,22 @@ for (var j=0; j <  myQuiz[currentQuestion].answers.length; j++) {
     answerListEl.appendChild(answerEl);
 };
 quizEl.appendChild(answerListEl);
-currentQuestion++;
 };
 
 var quiz = function() {
-  // clear main element of the intro html
-  mainEl.innerHTML ="";
-  // push question to the DOM
-  mainEl.appendChild(quizEl);
+  mainEl.innerHTML ="";         // clear main element of the intro html
+  mainEl.appendChild(quizEl);   // push question to the DOM
+
+  while (currentQuestion < myQuiz.length && timeLeft()) {
+    // alert(currentQuestion);
+    nextQuestion(currentQuestion);  // load question
+    currentQuestion++;
+  }
 };
 
+// event handler for answer click
 var handleAnswer = function(event){
-  alert("answer handler")
+  // alert("answer handler")
   answerSelected = event.target.getAttribute("data-answer-num");
   if (answerSelected === myQuiz[currentQuestion].correctAnswer){
     quizEl.appendChild(correctAnswerEl);
@@ -128,7 +142,7 @@ var handleAnswer = function(event){
   // move to next question
   currentQuestion++;
   if (currentQuestion <= parseInt(myQuiz.length,10)){
-    getQuestion(currentQuestion);
+    nextQuestion(currentQuestion);
     quiz();
   } else {
     endgame();
@@ -136,23 +150,21 @@ var handleAnswer = function(event){
 
 }
 
+var timeLeft = function(){
+  return true;
+}
 
 // code executing here
 // -------------------
 
-// fetch the data for quiz questions and answers
-var myQuiz = fetchQuizData();
-// preload the first question
-getQuestion(currentQuestion);
 
-// load the intro
-loadIntro();
+var myQuiz = fetchQuizData();   // fetch the data for quiz questions and answers
+nextQuestion(currentQuestion);  // preload the first question
+loadIntro();                    // load the intro page
 
 
 
 
-
-
-// Add event listener to generate button
-startBtnEl.addEventListener("click", quiz);
-quizEl.querySelector("#answers").addEventListener("click", handleAnswer)
+// Event listeners
+startBtnEl.addEventListener("click", quiz);   // start button on intro page
+quizEl.querySelector("#answers").addEventListener("click", handleAnswer)  // quizEl has to be set before calling
