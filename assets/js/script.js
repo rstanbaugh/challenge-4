@@ -140,7 +140,6 @@ var saveScore = function(){
     // there are previou results
     leaderBoard.push(results);
     localStorage.setItem("results",JSON.stringify(leaderBoard));
-    alert(leaderBoard.length);
   }
 
 }
@@ -161,18 +160,16 @@ var handleAnswer = function(event){
   var timer = setInterval(function(){
     if(haveShownResults){
       clearInterval(timer);
+      // move to next question
+      currentQuestion++;
+      if (currentQuestion < myQuiz.length){
+        nextQuestion(currentQuestion);
+      } else {
+        endGame(timeLeft);
+      }
     }
     haveShownResults = true;
-  }, 1000);
-
-  // move to next question
-  currentQuestion++;
-  if (currentQuestion < myQuiz.length){
-    nextQuestion(currentQuestion);
-  } else {
-    endGame(timeLeft);
-  }
-
+  }, 500);
 }
 
 
