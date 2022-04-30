@@ -129,7 +129,7 @@ var saveScore = function(){
   
 
   // check for past results
-  var savedScores[] = JSON.parse(localStorage.getItem('results'));
+  var savedScores = JSON.parse(localStorage.getItem('results'));
 
   if (savedScores === null){
     // if no previous results, write current scores
