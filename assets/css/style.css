@@ -121,14 +121,17 @@ form input {
   display: flex;
   flex-direction: column;
   display: none;
+  border: solid red;
 }
 #final-score form{
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 #final-score div {
   text-align: left;
-  border: solid red;
+  margin-bottom: 5px;
 }
 
 

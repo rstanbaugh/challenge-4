@@ -1,14 +1,19 @@
 // variables
 var currentQuestion = 0;
 var timeLeft = 30;  // initial time left in game
+var results = {
+  initials: "",
+  score: 0
+}
+
 var bodyEl = document.querySelector("#page"); 
-var startBtn = document.querySelector("#start-quiz");
+var startBtnEl = document.querySelector("#start-quiz");
 var introEl = document.querySelector("#intro");
 var quizEl = document.querySelector("#quiz");
 var startBtnEl = document.querySelector("#start-quiz");
 var timerEl = document.querySelector("#timer");
 var finalScoreEl = document.querySelector("#final-score");
-
+var submitBtn = document.querySelector("save-scor")
 
 
 // load quiz questions
@@ -31,8 +36,7 @@ var myQuiz = [{
 {
   question: "A very useful tool during development and debugging of printing content to the debugger is: ",
   answers: ["JavaScript", "terminal / bash", "for loops", "console.log"],
-  correctAnswer: "4"}
-];
+  correctAnswer: "4"}];
 
 // create correct answer element - shown when question answered correctly
 var correctAnswerEl = document.createElement("h2")
@@ -66,10 +70,10 @@ var gameTimer = function(){
 
 // load intro page
 var loadIntro = function(){
-introEl.style.display = "";
+introEl.style.display = "flex";
 quizEl.style.display = "none";
 finalScoreEl.style.display = "none";
-};
+}
 
 
 // function to build html for next question
@@ -88,38 +92,42 @@ var nextQuestion = function(currentQuestion){
       answerEl.textContent = (j+1)+". "+myQuiz[currentQuestion].answers[j];
       answerEl.addEventListener("click", handleAnswer);
       answerListEl.appendChild(answerEl);
-  };
+  }
   quizEl.appendChild(answerListEl);
-};
+}
 
 
 var startQuiz = function() {
   introEl.style.display = "none";
   nextQuestion(currentQuestion);
   gameTimer();
-};
+}
 
 // called when out of time or all questions answered
 var endGame = function(score){
   timeLeft="done";
   quizEl.style.display = "none";
   finalScoreEl.style.display = "flex"
+  results.score = score;
 
 
   var pageContent = document.createElement("div");
   pageContent.innerHTML ="<h1>All Done!</h1><br>"+
     "<h3>Your final score is: ".concat(score,"</h3>");
   
-  finalScoreEl.appendChild(pageContent);
+  finalScoreEl.prepend(pageContent);
 
-  initialsEl = document.createElement("form");
-    initialsEl.
+  initialsEl = document.querySelector("#initials");
   
-  finalScoreEl.style.display = ""
-};
+  finalScoreEl.style.display = "flex";
+}
 
+// event handler for submitBtn Click
+var saveScore = function(){
 
-// event handler for answer click
+}
+
+// event handler for click on quiz answer (li)
 var handleAnswer = function(event){
   answerSelected = event.target.getAttribute("data-answer-num");
   if (answerSelected === myQuiz[currentQuestion].correctAnswer){
@@ -141,8 +149,6 @@ var handleAnswer = function(event){
 }
 
 
-
-
-
 // Event listeners
 startBtnEl.addEventListener("click", startQuiz);   // start button on intro page
+submitBtn.addEventListener("click",saveScore);
