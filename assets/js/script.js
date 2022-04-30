@@ -126,27 +126,23 @@ var endGame = function(score){
 // event handler for submitBtnEl Click
 var saveScore = function(){
   results.initials = document.querySelector("input[name='initials']").value;
-  
 
   // check for past results
-  var savedScores = JSON.parse(localStorage.getItem('results'));
+  var leaderBoard = JSON.parse(localStorage.getItem('results'));
 
-  if (savedScores === null){
+  if (leaderBoard === null){
     // if no previous results, write current scores
-    localStorage.setItem("results",JSON.stringify(results));
+    leaderBoard = [];
+    leaderBoard.push(results);
+    localStorage.setItem("results",JSON.stringify(leaderBoard));
   } 
   else {
-    // 
-    alert(savedScores.length);
+    // there are previou results
+    leaderBoard.push(results);
+    localStorage.setItem("results",JSON.stringify(leaderBoard));
+    alert(leaderBoard.length);
   }
-  debugger
-  // if yes:
-  //    - read all local storage
-  //    - add new items to local storage
-  //    - pust everything back to local storage
-  
-  localStorage.setItem("results",JSON.stringify(results));
-  
+
 }
 
 // event handler for click on quiz answer (li)
@@ -159,6 +155,15 @@ var handleAnswer = function(event){
     quizEl.appendChild(wrongAnswerEl);
     timeLeft -= 10;
   }
+  
+  // trying to write a do nothing loop
+  var haveShownResults = false;
+  var timer = setInterval(function(){
+    if(haveShownResults){
+      clearInterval(timer);
+    }
+    haveShownResults = true;
+  }, 1000);
 
   // move to next question
   currentQuestion++;
