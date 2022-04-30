@@ -7,13 +7,14 @@ var results = {
 }
 
 var bodyEl = document.querySelector("#page"); 
-var startBtnEl = document.querySelector("#start-quiz");
 var introEl = document.querySelector("#intro");
 var quizEl = document.querySelector("#quiz");
-var startBtnEl = document.querySelector("#start-quiz");
-var timerEl = document.querySelector("#timer");
 var finalScoreEl = document.querySelector("#final-score");
-var submitBtn = document.querySelector("save-scor")
+var timerEl = document.querySelector("#timer");
+
+var startBtnEl = document.querySelector("#start-quiz");
+var submitBtnEl = document.querySelector("#save-score");
+
 
 
 // load quiz questions
@@ -107,24 +108,45 @@ var startQuiz = function() {
 var endGame = function(score){
   timeLeft="done";
   quizEl.style.display = "none";
-  finalScoreEl.style.display = "flex"
   results.score = score;
-
 
   var pageContent = document.createElement("div");
   pageContent.innerHTML ="<h1>All Done!</h1><br>"+
     "<h3>Your final score is: ".concat(score,"</h3>");
   
-  finalScoreEl.prepend(pageContent);
-
-  initialsEl = document.querySelector("#initials");
-  
+  // disply text for final score as first child and display the page
+  finalScoreEl.prepend(pageContent);  
   finalScoreEl.style.display = "flex";
+
+
+  // even listener for end-game page
+  submitBtnEl.addEventListener("click",saveScore);
 }
 
-// event handler for submitBtn Click
+// event handler for submitBtnEl Click
 var saveScore = function(){
+  results.initials = document.querySelector("input[name='initials']").value;
+  
 
+  // check for past results
+  var savedScores[] = JSON.parse(localStorage.getItem('results'));
+
+  if (savedScores === null){
+    // if no previous results, write current scores
+    localStorage.setItem("results",JSON.stringify(results));
+  } 
+  else {
+    // 
+    alert(savedScores.length);
+  }
+  debugger
+  // if yes:
+  //    - read all local storage
+  //    - add new items to local storage
+  //    - pust everything back to local storage
+  
+  localStorage.setItem("results",JSON.stringify(results));
+  
 }
 
 // event handler for click on quiz answer (li)
@@ -151,4 +173,3 @@ var handleAnswer = function(event){
 
 // Event listeners
 startBtnEl.addEventListener("click", startQuiz);   // start button on intro page
-submitBtn.addEventListener("click",saveScore);
