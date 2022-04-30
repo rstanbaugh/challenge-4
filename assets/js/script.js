@@ -7,7 +7,7 @@ var results = {
 }
 
 var bodyEl = document.querySelector("#page"); 
-var introEl = document.querySelector("#intro");
+var introEl = document.querySelector(".intro");
 var quizEl = document.querySelector("#quiz");
 var finalScoreEl = document.querySelector("#final-score");
 var timerEl = document.querySelector("#timer");
