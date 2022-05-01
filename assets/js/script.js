@@ -124,7 +124,8 @@ var endGame = function(score){
 }
 
 // saveScore: event handler for submitBtnEl Click
-var saveScore = function(){
+var saveScore = function(event){
+  event.preventDefault();
   results.initials = document.querySelector("input[name='initials']").value;
 
   // check for past results
