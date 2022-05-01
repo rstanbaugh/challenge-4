@@ -17,6 +17,7 @@ This page generates a JavsScript quiz:
 - The user's score is equal to the time remaining at the end of the quiz
 - The user is given the opportunity to record their name/initials with their score
 - The quiz presents a leaderboard of previous scores
+- the leaderboard is sorted from high to low score
 - There is a function to clear the leaderboard
 <br />
 <br />
