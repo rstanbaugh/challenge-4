@@ -1,8 +1,8 @@
-# JavaScript: Password Generator
+# Challenge 4: Javascript Quiz
 #####  Developed by: Rich Stanbuagh <br />
 
 
-![PW Generator](./assets/images/Challenge%203%20Screen%20Shot.png)
+![PW Generator](./assets/images/Challenge%204%20Screen%20Shot.png)
 
 https://rstanbaugh.github.io/challenge-4/
 <br />
