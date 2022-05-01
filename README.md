@@ -2,7 +2,7 @@
 #####  Developed by: Rich Stanbuagh <br />
 
 
-![Javascript Quiz](./assets/images/Challenge%204%20Screen%20Shot.png)
+![Javascript Quiz](./assets/images/Challenge%204%20screen%20shot.png)
 
 https://rstanbaugh.github.io/challenge-4/
 <br />
