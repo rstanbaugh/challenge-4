@@ -10,12 +10,14 @@ https://rstanbaugh.github.io/challenge-4/
 
 ## Description
 This page generates a JavsScript quiz:
-- User selects length between 8 and 128 characters
-- Password can consist of at last one of the following character types:
-  - Lower case letters,
-  - Upper case letters,
-  - Numbers, and/or
-  - Special characters.
+- The user has 30 seconds to answer 5 javascript questions
+- Each correct answer adds 10s to the time
+- Each incorrect answer subtacts 10s from the time
+- The quiz ends when the time expires or all questions are answered
+- The user's score is equal to the time remaining at the end of the quiz
+- The user is given the opportunity to record their name/initials with their score
+- The quiz presents a leaderboard of previous scores
+- There is a function to clear the leaderboard
 <br />
 <br />
 
@@ -25,6 +27,4 @@ This page generates a JavsScript quiz:
 * Javascript <br />
 <br />
 
-## Notes
-* HTML & CSS provided as with the challenge
-* Javascript added by Stanbaugh and finalized 4-22-2022
+
