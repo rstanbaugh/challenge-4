@@ -1,0 +1,155 @@
+* {
+  margin: 5px 10px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+/* css variables */
+:root {
+  --background-color: #524578;
+  --click-color:#484578;
+  --font-color: #ffffff;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  direction: flex;
+  flex-direction: column;
+  margin: 5px 25%;
+}
+
+.main div {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  color: var(--background-color);
+  height: 100px;
+  position: sticky; 
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.intro p {
+  font-size: 18px;
+}
+
+.btn {
+  border: none;
+  background-color: var(--background-color);
+  border-radius: 10px;
+  box-shadow: 4px 4px #fff ;
+  color: var(--font-color);
+  font-size: 16px;
+  line-height: 12px;
+  width:fit-content;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: inline;
+}
+
+
+#quiz {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+#answers {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+#answers li {
+  border: solid var(--background-color);
+  background-color: var(--background-color);
+  border-radius: 8px;
+  box-shadow: 4px 4px #fff ;
+  color: var(--font-color);
+  font-size: 16px;
+  width:fit-content;
+  padding: 3px 7px;
+}
+
+.results {
+border-top: solid #666;
+color: #666;
+font-style: italic;
+width: 100%;
+}
+
+form input {
+  outline: none;
+  border: none;
+  padding: 5px;
+  width: 30%;
+  font-size: 18px;
+  border: 2px solid #000;
+  border-radius: 12px;
+}
+
+.btn:hover {
+  filter: brightness(85%);
+}
+
+.btn:active {
+  /* background-color: #3e8e41; */
+  filter: brightness(85%);
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+#answers li:hover {
+  filter: brightness(85%);
+}
+
+#answers li:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);}
+
+#final-score {
+  display: flex;
+  flex-direction: column;
+  display: none;
+  border: solid red;
+}
+#final-score form{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#final-score div {
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.leaderboard {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left;
+  margin: 20px 30% 0 30%;
+}
+
+.leaderboard ol li:hover {
+  background-color: #F0E9FA;
+}
+.leaderboard-btns{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 5px 30%;
+}
