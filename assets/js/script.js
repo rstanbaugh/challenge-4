@@ -123,7 +123,7 @@ var endGame = function(score){
   submitBtnEl.addEventListener("click",saveScore);
 }
 
-// event handler for submitBtnEl Click
+// saveScore: event handler for submitBtnEl Click
 var saveScore = function(){
   results.initials = document.querySelector("input[name='initials']").value;
 
@@ -147,7 +147,7 @@ var saveScore = function(){
   }
 }
 
-// event handler quiz answer click (li)
+// handleAnswer: event handler quiz answer click (li)
 var handleAnswer = function(event){
   answerSelected = event.target.getAttribute("data-answer-num");
   if (answerSelected === myQuiz[currentQuestion].correctAnswer){

@@ -20,16 +20,39 @@
 
 <script>
   var leaderListEl = document.getElementById("leaders");
+  var clearBtn = document.getElementById("clear-highscores");
 
   var leaderBoard = JSON.parse(localStorage.getItem('results'));
 
-  for(var i=0;i < leaderBoard.length; i++){
-    // console.log((i+1)+". "+leaderBoard[i].initials+" "+leaderBoard[i].score)
-    var leadersEl = document.createElement("li");
-      leadersEl.textContent = ((i+1)+". "+leaderBoard[i].initials+" "+leaderBoard[i].score);
-      leaderListEl.appendChild(leadersEl);
+  if (leaderBoard === null){
+    leaderBoard = [];
+  } else {
+    leaderBoard.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
   }
 
 
+  // loadScores: function to load all the stored scores
+  var loadScores = function(){
+    for(var i=0;i < leaderBoard.length; i++){
+      // console.log((i+1)+". "+leaderBoard[i].initials+" "+leaderBoard[i].score)
+      var leadersEl = document.createElement("li");
+        leadersEl.textContent = ((leaderBoard[i].initials?leaderBoard[i].initials:"__")+" "+leaderBoard[i].score);
+        leaderListEl.appendChild(leadersEl);
+    }
+  }
+
+  var clearScores = function() {
+    localStorage.clear();
+    leaderBoard=[];
+    while (leaderListEl.firstChild) {
+    leaderListEl.removeChild(leaderListEl.lastChild);
+    }
+  }
+
+  // load the leaderboard
+  loadScores();
+
+  // event listener
+  clearBtn.addEventListener("click", clearScores);   // clear local storage
 </script>
 </html>
