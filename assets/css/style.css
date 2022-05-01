@@ -44,11 +44,6 @@ body {
   font-size: 18px;
 }
 
-.intro div{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
 .btn {
   border: none;
   background-color: var(--background-color);
@@ -104,6 +99,7 @@ form input {
   border: 2px solid #000;
   border-radius: 12px;
 }
+
 .btn:hover {
   filter: brightness(85%);
 }
@@ -140,6 +136,19 @@ form input {
   margin-bottom: 5px;
 }
 
+.leaderboard {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left;
+  margin: 0 25%;
+}
+
+.leaderboard-btns{
+  display: flex;
+  flex-direction: row;
+  margin: 0 25%;
+}
 
 /* ####### Begin media queries########### */
 /* 900px  section */
