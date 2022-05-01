@@ -10,10 +10,7 @@
 <body>
   <div class="leaderboard">
     <h1>Leaderboard</h1>
-    <ol>
-      <li>test</li>
-      <li>rich - 50</li>
-    </ol>
+    <ol id="leaders"></ol>
   </div>
   <div class="leaderboard-btns">
     <button class="btn" id="go-back" onclick="window.location.href='./index.html'" >Go back</button>
@@ -22,6 +19,17 @@
 </body>
 
 <script>
+  var leaderListEl = document.getElementById("leaders");
+
+  var leaderBoard = JSON.parse(localStorage.getItem('results'));
+
+  for(var i=0;i < leaderBoard.length; i++){
+    // console.log((i+1)+". "+leaderBoard[i].initials+" "+leaderBoard[i].score)
+    var leadersEl = document.createElement("li");
+      leadersEl.textContent = ((i+1)+". "+leaderBoard[i].initials+" "+leaderBoard[i].score);
+      leaderListEl.appendChild(leadersEl);
+  }
+
 
 </script>
 </html>

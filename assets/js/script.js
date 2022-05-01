@@ -77,7 +77,7 @@ finalScoreEl.style.display = "none";
 }
 
 
-// function to build html for next question
+// nextQuestion: function to build html for next question
 var nextQuestion = function(currentQuestion){
   var answerString="";
   quizEl.innerHTML = "<h1>" + myQuiz[currentQuestion].question + "</h1>" + answerString;
@@ -104,7 +104,7 @@ var startQuiz = function() {
   gameTimer();
 }
 
-// called when out of time or all questions answered
+// ENDGAME: called when out of time or all questions answered
 var endGame = function(score){
   timeLeft="done";
   quizEl.style.display = "none";
@@ -135,16 +135,19 @@ var saveScore = function(){
     leaderBoard = [];
     leaderBoard.push(results);
     localStorage.setItem("results",JSON.stringify(leaderBoard));
+    // goto Leaderboard
+    location.href = "./leaderboard.html";
   } 
   else {
     // there are previou results
     leaderBoard.push(results);
     localStorage.setItem("results",JSON.stringify(leaderBoard));
+    // goto Leaderboard
+    location.href = "./leaderboard.html";
   }
-
 }
 
-// event handler for click on quiz answer (li)
+// event handler quiz answer click (li)
 var handleAnswer = function(event){
   answerSelected = event.target.getAttribute("data-answer-num");
   if (answerSelected === myQuiz[currentQuestion].correctAnswer){
@@ -155,7 +158,7 @@ var handleAnswer = function(event){
     timeLeft -= 10;
   }
   
-  // trying to write a do nothing loop
+  // do-nothing loop to allow results to display
   var haveShownResults = false;
   var timer = setInterval(function(){
     if(haveShownResults){
@@ -169,9 +172,9 @@ var handleAnswer = function(event){
       }
     }
     haveShownResults = true;
-  }, 500);
+  }, 100);
 }
 
 
-// Event listeners
+// Intro event listener
 startBtnEl.addEventListener("click", startQuiz);   // start button on intro page
